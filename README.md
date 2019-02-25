@@ -2,7 +2,7 @@
 
 Модуль позволяет принимать платежи банковской картой через Модульбанк.
 
-[Скачать модуль](https://github.com/modulbank-pay/modulbank-opencart23/releases/download/1.0.0/modulbank_opencart23.ocmod.zip)
+[Скачать модуль](https://github.com/modulbank-pay/modulbank-opencart2.3/releases/download/1.0.0/modulbank_opencart2.3_1.0.0.ocmod.zip)
 
 ### Установка
 
