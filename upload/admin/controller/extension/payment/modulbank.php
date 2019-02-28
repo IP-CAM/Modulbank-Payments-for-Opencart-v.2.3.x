@@ -25,6 +25,7 @@ class ControllerExtensionPaymentModulbank extends Controller
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_enabled']   = $this->language->get('text_enabled');
+		$data['help_total']   = $this->language->get('help_total');
 		$data['text_disabled']  = $this->language->get('text_disabled');
 		$data['text_all_zones'] = $this->language->get('text_all_zones');
 
