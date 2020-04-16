@@ -11,6 +11,19 @@ class ControllerExtensionPaymentModulbank extends Controller
 		$this->load->model('checkout/order');
 		$this->load->model('extension/payment/modulbank');
 
+		$data = [
+			'button_confirm' => $this->language->get('button_confirm'),
+			'text_loading' => $this->language->get('text_loading'),
+		];
+
+		return $this->load->view('extension/payment/modulbank', $data);
+	}
+
+	public function send()
+	{
+		$this->load->model('checkout/order');
+		$this->load->model('extension/payment/modulbank');
+
 		$order_id   = (int) $this->session->data['order_id'];
 		$order_info = $this->model_checkout_order->getOrder($order_id);
 
@@ -24,36 +37,37 @@ class ControllerExtensionPaymentModulbank extends Controller
 		];
 
 		$data = [
-			'action'         => 'https://pay.modulbank.ru/pay',
-			'button_confirm' => $this->language->get('button_confirm'),
-			'form'           => [
-				'merchant'        => $this->config->get('modulbank_merchant'),
-				'amount'          => $amount,
-				'order_id'        => $order_id,
-				'testing'         => $this->config->get('modulbank_mode') == 'test' ? 1 : 0,
-				'preauth'         => $this->config->get('modulbank_preauth'),
-				'description'     => 'Оплата заказа №' . $order_id,
-				'success_url'     => $this->config->get('modulbank_success_url'),
-				'fail_url'        => $this->config->get('modulbank_fail_url'),
-				'cancel_url'      => $this->config->get('modulbank_back_url'),
-				'callback_url'    => $this->url->link('extension/payment/modulbank/callback', '', true),
-				'client_name'     => $order_info['payment_firstname'],
-				'client_email'    => $order_info['email'],
-				'receipt_contact' => $order_info['email'],
-				'receipt_items'   => $receiptJson,
-				'unix_timestamp'  => time(),
-				'sysinfo'         => json_encode($sysinfo),
-				'salt'            => ModulbankHelper::getSalt(),
-			],
+			'merchant'        => $this->config->get('modulbank_merchant'),
+			'amount'          => $amount,
+			'order_id'        => $order_id,
+			'testing'         => $this->config->get('modulbank_mode') == 'test' ? 1 : 0,
+			'preauth'         => intval($this->config->get('modulbank_preauth')),
+			'description'     => 'Оплата заказа №' . $order_id,
+			'success_url'     => $this->config->get('modulbank_success_url'),
+			'fail_url'        => $this->config->get('modulbank_fail_url'),
+			'cancel_url'      => $this->config->get('modulbank_back_url'),
+			'callback_url'    => $this->url->link('extension/payment/modulbank/callback', '', true),
+			'client_name'     => $order_info['payment_firstname'],
+			'client_email'    => $order_info['email'],
+			'receipt_contact' => $order_info['email'],
+			'receipt_items'   => $receiptJson,
+			'unix_timestamp'  => time(),
+			'sysinfo'         => json_encode($sysinfo),
+			'salt'            => ModulbankHelper::getSalt(),
 		];
 
 		$key = $this->model_extension_payment_modulbank->getKey();
-
-		$signature                 = ModulbankHelper::calcSignature($key, $data['form']);
-		$data['form']['signature'] = $signature;
+		$orderStatusId = $this->config->get('config_order_status_id');
+        $this->model_checkout_order->addOrderHistory($order_id, $orderStatusId, '');
+		$signature                 = ModulbankHelper::calcSignature($key, $data);
+		$data['signature'] = $signature;
 		$this->log($data, 'paymentform');
+		echo json_encode([
+			'error' => false,
+			'fields' => $data,
+		]);
+		exit();
 
-		return $this->load->view('extension/payment/modulbank', $data);
 	}
 
 	public function callback()
