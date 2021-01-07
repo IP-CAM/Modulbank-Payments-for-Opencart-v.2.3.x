@@ -56,6 +56,10 @@ class ControllerExtensionPaymentModulbank extends Controller
 			'salt'            => ModulbankHelper::getSalt(),
 		];
 
+		if(!empty($this->config->get('modulbank_show_payment_methods'))) {
+			$data['show_payment_methods'] = json_encode($this->config->get('modulbank_show_payment_methods'));
+		}
+
 		$key = $this->model_extension_payment_modulbank->getKey();
 		$orderStatusId = $this->config->get('config_order_status_id');
         $this->model_checkout_order->addOrderHistory($order_id, $orderStatusId, '');
