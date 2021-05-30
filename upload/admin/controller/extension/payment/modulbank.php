@@ -143,6 +143,8 @@ class ControllerExtensionPaymentModulbank extends Controller
 		$data['show_payment_methods_list'] = array(
 			'sbp'  => $this->language->get('text_spm_sbp'),
 			'card' => $this->language->get('text_spm_card'),
+			'googlepay' => $this->language->get('text_spm_googlepay'),
+			'applepay' => $this->language->get('text_spm_applepay'),
 		);
 
 		$settings = array(
@@ -172,8 +174,11 @@ class ControllerExtensionPaymentModulbank extends Controller
 			'sort_order'              => '',
 			'log_size_limit'          => 10,
 			'preauth'                 => 0,
-			'show_payment_methods'    => ['sbp', 'card'],
+			'pm_checkbox'             => 0,
+			'show_payment_methods'    => ['sbp', 'card', 'googlepay', 'applepay'],
 		);
+
+		$data['text_pm_checkbox_tooltip'] = $this->language->get('text_pm_checkbox_tooltip');
 
 		foreach ($settings as $key => $default) {
 			$data['entry_' . $key] = $this->language->get('entry_' . $key);

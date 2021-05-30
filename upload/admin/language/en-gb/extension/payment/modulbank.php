@@ -31,9 +31,6 @@ $_['text_sno_envd']               = 'envd';
 $_['text_sno_esn']                = 'esn';
 $_['text_sno_patent']             = 'patent';
 
-$_['text_spm_sbp']  = 'SBP';
-$_['text_spm_card'] = 'Card';
-
 $_['text_pm_full_prepayment'] = 'full prepayment';
 $_['text_pm_prepayment']      = 'prepayment';
 $_['text_pm_advance']         = 'advance';
@@ -55,6 +52,13 @@ $_['text_po_payment']               = 'payment';
 $_['text_po_agent_commission']      = 'agent commission';
 $_['text_po_composite']             = 'composite';
 $_['text_po_another']               = 'another';
+
+$_['text_pm_checkbox_tooltip']     = 'You can choose payments methods you need by checking on checbox and select items';
+
+$_['text_spm_sbp']  = 'SBP';
+$_['text_spm_card'] = 'Card';
+$_['text_spm_googlepay']  = 'GooglePay';
+$_['text_spm_applepay']   = 'ApplePay';
 
 $_['text_modulbank'] = '<img src="view/image/payment/modulbank.png" alt="Модульбанк" title="Модульбанк" style="border: 1px solid #EEEEEE;" />';
 
@@ -85,7 +89,8 @@ $_['entry_logging']                 = 'Logging';
 $_['entry_log_size_limit']          = 'Log size limit (Mb)';
 $_['entry_confirm_order_status_id']    = 'Capture status';
 $_['entry_preauth']                 = 'preauth';
-$_['entry_show_payment_methods']    = 'Show payment methods';
+$_['entry_show_payment_methods']    = 'Payment methods';
+$_['entry_pm_checkbox']             = 'Custom payment methods list';
 
 // Help
 $_['help_total'] = 'The checkout total the order must reach before this payment method becomes active.';

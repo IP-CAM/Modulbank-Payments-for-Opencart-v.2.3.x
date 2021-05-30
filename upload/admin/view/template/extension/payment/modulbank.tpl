@@ -98,7 +98,17 @@
             </div>
           </div>
 
-          <div class="form-group">
+         <div class="form-group">
+            <label class="col-sm-2 control-label" ><span data-toggle="tooltip" title="<?php echo $text_pm_checkbox_tooltip; ?>"><?php echo $entry_pm_checkbox; ?></span></label>
+            <div class="col-sm-10">
+              <div class="checkbox">
+                <label>
+              <input type="checkbox" name="modulbank_pm_checkbox" value="1" id="modulbank_pm_checkbox" class="form-control" <?php if($modulbank_pm_checkbox):?>checked<?php endif;?> />
+              </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" id="show_payment_methods_block" style="display:none">
             <label class="col-sm-2 control-label" for="input-mode"><?php echo $entry_show_payment_methods; ?></label>
             <div class="col-sm-10">
               <select name="modulbank_show_payment_methods[]" id="input-mode" class="form-control" multiple size="2">
@@ -118,7 +128,7 @@
             <div class="col-sm-10">
               <select name="modulbank_preauth" id="input-preauth" class="form-control">
                 <?php if($modulbank_preauth == '0'): ?>
-                <option value="test" selected="selected"><?php echo $text_preauth_off; ?></option>
+                <option value="0" selected="selected"><?php echo $text_preauth_off; ?></option>
                 <?php else: ?>
                 <option value="0"><?php echo $text_preauth_off; ?></option>
                 <?php endif;?>
@@ -359,4 +369,20 @@
     </div>
   </div>
 </div>
+<script>
+  jQuery(document).ready(function(){
+    var checkbox = jQuery('#modulbank_pm_checkbox');
+    var block = jQuery('#show_payment_methods_block');
+    if (checkbox.attr('checked')) {
+      block.show();
+    }
+    checkbox.change(function(){
+      if (this.checked) {
+        block.show();
+      } else {
+        block.hide();
+      }
+    });
+  });
+</script>
 <?php echo $footer; ?>
