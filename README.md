@@ -1,3 +1,28 @@
+# Payment module for Opencart 2.3
+
+The module allows you to accept payments by bank card through Modulbank.
+
+[Download the module](https://github.com/modulbank-pay/modulbank-opencart2.3/releases/latest/download/modulbank_opencart2.3.ocmod.zip)
+
+### Installation
+
+1. Open the "Modules / Extensions"> "Install Extensions" section of the online store administration panel.
+2. Click on the "Download" button
+![Loading the Modulbank payment module](https://modulbank-pay.github.io/screenshots/opencart23/1.png)
+3. Select the file with the module, it will be automatically installed.
+4. Go to the section "Modules / Extensions"> "Install extensions", select the extension type "Payment" and activate the payment method "Internet acquiring Modulbank"
+![Loading the Modulbank payment module](https://modulbank-pay.github.io/screenshots/opencart23/2.png)
+5. Go to editing the payment method settings
+![Loading the Modulbank payment module](https://modulbank-pay.github.io/screenshots/opencart23/3.png)
+
+
+5. On the settings page, specify the name of the payment method that will be displayed to the buyer on the checkout page, the identifier and the secret key of your store, which can be found in Modulbank's personal account. Enable or disable test mode if necessary.
+For the correct sending of checks, it is required to indicate the taxation system, the subject of calculation, the method of payment and the default VAT rate.
+6. Click on the "Save" button.
+![Loading the Modulbank payment module](https://modulbank-pay.github.io/screenshots/opencart23/4.png)
+
+----------------
+
 # Платежный модуль для Opencart 2.3
 
 Модуль позволяет принимать платежи банковской картой через Модульбанк.
